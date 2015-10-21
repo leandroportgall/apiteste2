@@ -30,32 +30,70 @@
         <title>Hello World</title>
         <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
         <script type="text/javascript" charset="utf-8">
+
+            // Wait for device API libraries to load
+            //
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            // device APIs are available
+            //
+            function onDeviceReady() {
+                checkConnection();
+            }
+
+            function checkConnection() {
+                var networkState = navigator.connection.type;
+
+                var states = {};
+                states[Connection.UNKNOWN]  = 'Unknown connection';
+                states[Connection.ETHERNET] = 'Ethernet connection';
+                states[Connection.WIFI]     = 'WiFi connection';
+                states[Connection.CELL_2G]  = 'Cell 2G connection';
+                states[Connection.CELL_3G]  = 'Cell 3G connection';
+                states[Connection.CELL_4G]  = 'Cell 4G connection';
+                states[Connection.CELL]     = 'Cell generic connection';
+                states[Connection.NONE]     = 'No network connection';
+
+                alert('Connection type: ' + states[networkState]);
+            }
+
+        </script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            /*
             // Call onDeviceReady when Cordova is loaded.
             //
             // At this point, the document has loaded but cordova-x.x.x.js has not.
             // When Cordova is loaded and talking with the native device,
             // it will call the event `deviceready`.
             //
+            //onLoad();
             function onLoad() {
                 document.addEventListener("online", onOnline, false);
                 document.addEventListener("offline", onOffline, false);
                 document.addEventListener("deviceready", onDeviceReady, false);
+                alert('onLoad');
             }
             // Cordova is loaded and it is now safe to make calls Cordova methods
             //
             function onDeviceReady() {
-                console.log("onDeviceReady");
+                alert('Ready');
+                //console.log("onDeviceReady");
             }
             // Handle the online event
             //
+            //onOnline();
             function onOnline() {
-                console.log("onOnline");
-                location.href = 'http://www.portgall.com/';
+                //console.log("onOnline");
+                alert( 'Esta online' );
+                //location.href = 'http://www.portgall.com/';
             }
             function onOffline() {
-                console.log("onOffline");
+                //console.log("onOffline");
+                alert( 'esta offline' );
             }
-            location.href = 'http://www.portgall.com/';
+*/
+            //location.href = 'http://www.portgall.com/';
         </script>
     </head>
     <body>
@@ -65,8 +103,9 @@
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
+            <button onclick="location.reload();">Teste Redirect</button>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
+
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
